@@ -1,11 +1,11 @@
 const Graph = require('node-dijkstra')
-let dijkstra = require('./djikstra')
+let dijkstra = require('./djikstra');
+const mapNordstorm = require('../directory/map-nordstorm')
 
 exports.getPath = (req,res,next)=>{
 
-    var to = dijkstra.getNodeName(req.body.to)
-
-    var result = dijkstra.getPath(req.body.from, to)
+    var to = mapNordstorm.getNodeName(req.body.to)
+    var result = mapNordstorm.getPath(req.body.from, to)
 
     if (result != null){
         res.status(200).json({
@@ -17,7 +17,5 @@ exports.getPath = (req,res,next)=>{
             message : "You have arrived !"
         })
     }
-
-
 }
 
