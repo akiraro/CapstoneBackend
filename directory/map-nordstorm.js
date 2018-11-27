@@ -88,6 +88,42 @@ A.map(value =>{
       }catch(err){
         return false
       }
+    },
+    decodeName : function(data){
+      var result = ""
+      switch(data)
+      {
+        case "ADA392FE":
+          result = "A"
+          break;
+        case "DDA8387E":
+          result = "B"
+          break;
+        case "ED8EA9FE":
+          result = "C"
+          break;
+        case "BD2091FE":
+          result = "D"
+          break;
+        case "8D97357E":
+          result = "E"
+          break;
+        case "BDA13A7E":
+          result = "F"
+          break;
+        case "C1D1D909":
+          result = "G"
+          break;
+      }
+      return result
     }
   };
   
+
+// A = AD A3 92 FE
+// B = DD A8 38 7E
+// C = ED 8E A9 FE
+// D = BD 20 91 FE
+// E = 8D 97 35 7E
+// F = BD A1 3A 7E
+// G = C1 D1 D9 09

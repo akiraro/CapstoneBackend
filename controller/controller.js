@@ -3,9 +3,9 @@ let dijkstra = require('./djikstra');
 const mapNordstorm = require('../directory/map-nordstorm')
 
 exports.getPath = (req,res,next)=>{
-
+    var from = mapNordstorm.decodeName(req.body.from)
     var to = mapNordstorm.getNodeName(req.body.to)
-    var result = mapNordstorm.getPath(req.body.from, to)
+    var result = mapNordstorm.getPath(from, to)
 
     coord = {}
     result.path.map(data =>{
@@ -87,7 +87,6 @@ exports.getPath = (req,res,next)=>{
                 break;     
         }
     })
-    console.log(result)
     if (result != null){
         res.status(200).json({
             Path : result.path,
