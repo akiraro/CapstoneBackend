@@ -2,6 +2,14 @@ const Graph = require('node-dijkstra')
 let dijkstra = require('./djikstra');
 const mapNordstorm = require('../directory/map-nordstorm')
 
+exports.getHash = (req,res,next)=>{
+    console.log("hello")
+    res.status(200).json({
+        data :  mapNordstorm.test()
+    })
+    res.end()
+}
+
 exports.getPath = (req,res,next)=>{
     var from = mapNordstorm.decodeName(req.body.from)
     var to = mapNordstorm.getNodeName(req.body.to)

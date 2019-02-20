@@ -1,4 +1,5 @@
 const Graph = require("node-dijkstra");
+const bcrypt = require("bcryptjs");
 const route = new Graph();
 
 //Initialize all nodes//
@@ -88,6 +89,10 @@ A.map(value =>{
       }catch(err){
         return false
       }
+    },
+    test : function(){
+      data = bcrypt.hashSync("hi", "124fb851c5ee146c1e7f1eff6e435274");
+      return data
     },
     decodeName : function(data){
       var result = ""
