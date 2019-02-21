@@ -71,7 +71,7 @@ function getNextBearing(current, next) {
                 result = 270;
                 break;
             case "E":
-                result = 135;
+                result = 315;
                 break;
             case "D":
                 result = 80;
