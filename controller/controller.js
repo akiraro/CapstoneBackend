@@ -1,110 +1,34 @@
-const Graph = require('node-dijkstra')
+const Graph = require('node-dijkstra');
 let dijkstra = require('./djikstra');
-const mapNordstorm = require('../directory/map-nordstorm')
+const mapNordstorm = require('../directory/map-nordstorm');
+const directionController = require('../controller/directionController');
 
-exports.getHash = (req,res,next)=>{
+exports.getHash = (req, res, next) => {
     console.log("hello")
     res.status(200).json({
-        data :  mapNordstorm.test()
+        data: mapNordstorm.test()
     })
     res.end()
 }
 
-exports.getPath = (req,res,next)=>{
+exports.getPath = (req, res, next) => {
     var from = mapNordstorm.decodeName(req.body.from)
     var to = mapNordstorm.getNodeName(req.body.to)
+    var bearing = req.body.bearing
     var result = mapNordstorm.getPath(from, to)
+    var direction = directionController.getDirection(from, to, bearing)
 
-    coord = {}
-    result.path.map(data =>{
-        switch(data)
-        {
-            case 'A':
-              coord ={
-                  ...coord,
-                  A : {
-                      x : '0',
-                      y : '0'
-                  }
-                }
-              break;
-            case 'B':
-            coord ={
-                ...coord,
-                B : {
-                    x : '-3',
-                    y : '5'
-                }
-              }
-              break;
-            case 'C':
-            coord ={
-                ...coord,
-                C : {
-                    x : '3',
-                    y : '5'
-                }
-              }
-              break;
-            case 'D':
-            coord ={
-                ...coord,
-                D : {
-                    x : '9',
-                    y : '8'
-                }
-              }
-              break;
-            case 'E':
-            coord ={
-                ...coord,
-                E : {
-                    x : '0',
-                    y : '8'
-                }
-              }
-              break;
-            case 'F':
-            coord ={
-                ...coord,
-                F : {
-                    x : '3',
-                    y : '11'
-                }
-              }
-              break;
-            case 'G':
-            coord ={
-                ...coord,
-                G : {
-                    x : '-3',
-                    y : '11'
-                }
-              }
-              break;
-            case 'H':
-            coord ={
-                ...coord,
-                H : {
-                    x : '-3',
-                    y : '8'
-                }
-              }
-              break;
-            default :
-                break;     
-        }
-    })
-    if (result != null){
+    console.log(from + " : " + to)
+    if (result != null) {
         res.status(200).json({
-            Path : result.path,
-            Coordinates : coord,
-            TotalCost : result.cost
+            Path: result.path,
+            TotalCost: result.cost,
+            Bearing: req.body.bearing,
+            Navigation: direction
         })
-    }else{
+    } else {
         res.status(200).json({
-            message : "You have arrived !"
+            message: "You have arrived !"
         })
     }
 }
-
