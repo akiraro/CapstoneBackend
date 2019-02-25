@@ -151,6 +151,9 @@ module.exports = {
       case "C1D1D909":
         result = "G"
         break;
+      case "F3A0A775":
+        result = "H"
+        break;
     }
     return result
   }

@@ -27,6 +27,7 @@ exports.getDirection = (req, res, next) => {
     var next = req.body.next
     var bearing = req.body.bearing
     var direction = directionController.getDirection(current, next, bearing)
+    console.log(next)
 
     if (result != null) {
         res.status(200).json({

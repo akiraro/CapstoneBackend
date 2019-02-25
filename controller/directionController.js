@@ -5,6 +5,7 @@ module.exports = {
         var resultant = bearing - nextBearing;
         resultant = Math.abs(resultant)
         var direction = determineDirection(resultant)
+        console.log("direction: " + direction)
 
         result = {
             ...result,
@@ -20,7 +21,7 @@ function determineDirection(bearing) {
     var result = "";
     var data;
 
-    if (bearing >= 316 && bearing <= 44) {
+    if ((bearing >= 316 && bearing <= 360) || (bearing >= 0 && bearing <= 44)) {
         result = "forward"
     } else if (bearing >= 45 && bearing <= 135) {
         result = "right"
