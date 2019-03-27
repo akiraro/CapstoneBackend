@@ -45,7 +45,7 @@ exports.getDirection = ( req, res, next ) => {
 
     direction = {
         ...direction,
-        stairs
+        steps: stairs.steps
     }
 
     if ( result != null ) {
