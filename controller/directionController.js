@@ -1,11 +1,26 @@
 module.exports = {
     getDirection: function ( current, next, bearing ) {
         result = {}
-        var nextBearing = getNextBearing( current, next );
-        var resultant = bearing - nextBearing;
-        resultant = Math.abs( resultant )
-        var direction = determineDirection( resultant )
+        var nextBearing = getNextBearing( current, next )
+        if ( nextBearing > 0 && nextBearing < 180 ) {
+            var resultant = bearing - nextBearing
+            resultant = Math.abs( resultant )
+        } else {
+            var resultant = parseInt( bearing, 10 ) + 360 - nextBearing
+            resultant = Math.abs( resultant % 360 )
+        }
+
+
+        var resultant2 = parseInt( bearing, 10 ) + nextBearing
+        resultant2 = resultant2 % 360
+
+        var direction = determineDirection( resultant2 )
         console.log( "direction: " + direction )
+        console.log( "resultant: " + resultant )
+        console.log( "resultant2: " + resultant2 )
+        console.log( "nextBearing: " + nextBearing )
+        console.log( "bearing: " + bearing )
+
 
         result = {
             ...result,
@@ -21,13 +36,13 @@ function determineDirection( bearing ) {
     var result = "";
     var data;
 
-    if ( ( bearing >= 316 && bearing <= 360 ) || ( bearing >= 0 && bearing <= 44 ) ) {
+    if ( ( bearing >= 350 && bearing <= 360 ) || ( bearing >= 0 && bearing <= 10 ) ) {
         result = "forward"
-    } else if ( bearing >= 45 && bearing <= 135 ) {
+    } else if ( bearing >= 11 && bearing <= 170 ) {
         result = "right"
-    } else if ( bearing >= 136 && bearing <= 224 ) {
+    } else if ( bearing >= 170 && bearing <= 190 ) {
         result = "backward"
-    } else if ( bearing >= 225 && bearing <= 315 ) {
+    } else if ( bearing >= 190 && bearing <= 350 ) {
         result = "left"
     } else {
         result = "error"
@@ -47,7 +62,7 @@ function getNextBearing( current, next ) {
                 result = 50;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "B" ) {
@@ -63,7 +78,7 @@ function getNextBearing( current, next ) {
                 result = 90;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "C" ) {
@@ -78,7 +93,7 @@ function getNextBearing( current, next ) {
                 result = 80;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "D" ) {
@@ -93,7 +108,7 @@ function getNextBearing( current, next ) {
                 result = 310;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "E" ) {
@@ -111,7 +126,7 @@ function getNextBearing( current, next ) {
                 result = 225;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "F" ) {
@@ -126,7 +141,7 @@ function getNextBearing( current, next ) {
                 result = 270;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "G" ) {
@@ -141,7 +156,7 @@ function getNextBearing( current, next ) {
                 result = 180;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "H" ) {
@@ -156,7 +171,7 @@ function getNextBearing( current, next ) {
                 result = 90;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "H2" ) {
@@ -171,7 +186,7 @@ function getNextBearing( current, next ) {
                 result = 110;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "I" ) {
@@ -183,7 +198,7 @@ function getNextBearing( current, next ) {
                 result = 90;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "J" ) {
@@ -195,7 +210,7 @@ function getNextBearing( current, next ) {
                 result = 200;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     } else if ( current == "K" ) {
@@ -207,7 +222,7 @@ function getNextBearing( current, next ) {
                 result = 290;
                 break;
             default:
-                result = "error at getNextBearing";
+                result = -1
                 break;
         }
     }
