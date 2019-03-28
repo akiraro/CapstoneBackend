@@ -28,7 +28,7 @@ exports.getDirection = ( req, res, next ) => {
     var stairs;
     var bearing = req.body.bearing
     var direction = directionController.getDirection( current, next, bearing )
-    console.log( next )
+    var result = mapNordstorm.getPath( current, next )
 
     if ( ( current == "H" && next == "H2" ) || ( current == "H2" && next == "H" ) ) {
         stairs = {
@@ -45,7 +45,8 @@ exports.getDirection = ( req, res, next ) => {
 
     direction = {
         ...direction,
-        steps: stairs.steps
+        steps: stairs.steps,
+        distance: result.cost
     }
 
     if ( result != null ) {
