@@ -1,11 +1,11 @@
 module.exports = {
-    getDirection: function (current, next, bearing) {
+    getDirection: function ( current, next, bearing ) {
         result = {}
-        var nextBearing = getNextBearing(current, next);
+        var nextBearing = getNextBearing( current, next );
         var resultant = bearing - nextBearing;
-        resultant = Math.abs(resultant)
-        var direction = determineDirection(resultant)
-        console.log("direction: " + direction)
+        resultant = Math.abs( resultant )
+        var direction = determineDirection( resultant )
+        console.log( "direction: " + direction )
 
         result = {
             ...result,
@@ -17,17 +17,17 @@ module.exports = {
     }
 }
 
-function determineDirection(bearing) {
+function determineDirection( bearing ) {
     var result = "";
     var data;
 
-    if ((bearing >= 316 && bearing <= 360) || (bearing >= 0 && bearing <= 44)) {
+    if ( ( bearing >= 316 && bearing <= 360 ) || ( bearing >= 0 && bearing <= 44 ) ) {
         result = "forward"
-    } else if (bearing >= 45 && bearing <= 135) {
+    } else if ( bearing >= 45 && bearing <= 135 ) {
         result = "right"
-    } else if (bearing >= 136 && bearing <= 224) {
+    } else if ( bearing >= 136 && bearing <= 224 ) {
         result = "backward"
-    } else if (bearing >= 225 && bearing <= 315) {
+    } else if ( bearing >= 225 && bearing <= 315 ) {
         result = "left"
     } else {
         result = "error"
@@ -36,10 +36,10 @@ function determineDirection(bearing) {
     return result;
 }
 
-function getNextBearing(current, next) {
+function getNextBearing( current, next ) {
     var result;
-    if (current == "A") {
-        switch (next) {
+    if ( current == "A" ) {
+        switch ( next ) {
             case "B":
                 result = 310;
                 break;
@@ -50,9 +50,9 @@ function getNextBearing(current, next) {
                 result = "error at getNextBearing";
                 break;
         }
-    } else if (current == "B") {
+    } else if ( current == "B" ) {
 
-        switch (next) {
+        switch ( next ) {
             case "H":
                 result = 0;
                 break;
@@ -66,8 +66,8 @@ function getNextBearing(current, next) {
                 result = "error at getNextBearing";
                 break;
         }
-    } else if (current == "C") {
-        switch (next) {
+    } else if ( current == "C" ) {
+        switch ( next ) {
             case "B":
                 result = 270;
                 break;
@@ -81,8 +81,8 @@ function getNextBearing(current, next) {
                 result = "error at getNextBearing";
                 break;
         }
-    } else if (current == "D") {
-        switch (next) {
+    } else if ( current == "D" ) {
+        switch ( next ) {
             case "A":
                 result = 230;
                 break;
@@ -96,8 +96,8 @@ function getNextBearing(current, next) {
                 result = "error at getNextBearing";
                 break;
         }
-    } else if (current == "E") {
-        switch (next) {
+    } else if ( current == "E" ) {
+        switch ( next ) {
             case "C":
                 result = 135;
                 break;
@@ -114,8 +114,8 @@ function getNextBearing(current, next) {
                 result = "error at getNextBearing";
                 break;
         }
-    } else if (current == "F") {
-        switch (next) {
+    } else if ( current == "F" ) {
+        switch ( next ) {
             case "D":
                 result = 110;
                 break;
@@ -129,8 +129,8 @@ function getNextBearing(current, next) {
                 result = "error at getNextBearing";
                 break;
         }
-    } else if (current == "G") {
-        switch (next) {
+    } else if ( current == "G" ) {
+        switch ( next ) {
             case "F":
                 result = 90;
                 break;
@@ -144,13 +144,67 @@ function getNextBearing(current, next) {
                 result = "error at getNextBearing";
                 break;
         }
-    } else if (current == "H") {
-        switch (next) {
+    } else if ( current == "H" ) {
+        switch ( next ) {
             case "G":
                 result = 0;
                 break;
             case "B":
                 result = 180;
+                break;
+            case "H2":
+                result = 90;
+                break;
+            default:
+                result = "error at getNextBearing";
+                break;
+        }
+    } else if ( current == "H2" ) {
+        switch ( next ) {
+            case "H":
+                result = 270;
+                break;
+            case "I":
+                result = 40;
+                break;
+            case "K":
+                result = 110;
+                break;
+            default:
+                result = "error at getNextBearing";
+                break;
+        }
+    } else if ( current == "I" ) {
+        switch ( next ) {
+            case "H2":
+                result = 220;
+                break;
+            case "J":
+                result = 90;
+                break;
+            default:
+                result = "error at getNextBearing";
+                break;
+        }
+    } else if ( current == "J" ) {
+        switch ( next ) {
+            case "I":
+                result = 270;
+                break;
+            case "K":
+                result = 200;
+                break;
+            default:
+                result = "error at getNextBearing";
+                break;
+        }
+    } else if ( current == "K" ) {
+        switch ( next ) {
+            case "J":
+                result = 20;
+                break;
+            case "H2":
+                result = 290;
                 break;
             default:
                 result = "error at getNextBearing";
