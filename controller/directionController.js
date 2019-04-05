@@ -11,12 +11,16 @@ module.exports = {
             } else {
                 resultant = resultant2
             }
-            console.log( "resultant1 is ", resultant1 )
-            console.log( "resultant2 is ", resultant2 )
             resultant = Math.abs( resultant )
         } else {
+
             var resultant = parseInt( bearing, 10 ) + 360 - nextBearing
-            resultant = Math.abs( resultant % 360 )
+            var res = ( resultant % 360 )
+            console.log( res )
+            resultant1 = Math.abs( res )
+            resultant2 = Math.abs( res )
+            console.log( "res is ", res )
+            resultant = res
         }
 
         if ( resultant1 < resultant2 ) {
