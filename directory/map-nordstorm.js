@@ -46,13 +46,20 @@ route.addNode( "H", {
 } );
 route.addNode( "H2", {
   I: 5,
-  K: 8
+  K: 8,
+  H: 100
 } );
 route.addNode( "I", {
-  J: 7
+  J: 7,
+  H: 5
 } );
 route.addNode( "J", {
-  K: 7
+  K: 7,
+  I: 7
+} );
+route.addNode( "K", {
+  J: 7,
+  H2: 8
 } );
 
 //Initialize all sub-nodes//
@@ -216,15 +223,15 @@ module.exports = {
 };
 
 
-// A =  AD A3 92 FE
-// B =  DD A8 38 7E
-// C =  ED 8E A9 FE
-// D =  BD 20 91 FE
-// E =  8D 97 35 7E
-// F =  BD A1 3A 7E
-// G =  C1 D1 D9 09
-// H =  F3 A0 A7 75
-// H2 = 49 D7 4C 9A
-// I =  43 D1 BD 75
-// J =  B4 B0 1F A3
-// K =  F0 F8 75 A4
+// A =  ADA392FE
+// B =  DDA8387E
+// C =  ED8EA9FE
+// D =  BD2091FE
+// E =  8D97357E
+// F =  BDA13A7E
+// G =  C1D1D909
+// H =  F3A0A775
+// H2 = 49D74C9A
+// I =  43D1BD75
+// J =  B4B01FA3
+// K =  F0F875A4

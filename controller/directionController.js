@@ -23,13 +23,6 @@ module.exports = {
             resultant = res
         }
 
-        // if ( resultant1 < resultant2 ) {
-        //     var direction = determineDirection( resultant2 )
-        //     console.log( "Running here 1" )
-        // } else {
-        //     var direction = determineDirection( resultant1 )
-        //     console.log( "Running here 2" )
-        // }
 
         var resultant2 = parseInt( bearing, 10 ) + nextBearing
         var direction = determineDirection( resultant2 )
