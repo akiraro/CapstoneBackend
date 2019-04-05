@@ -51,7 +51,7 @@ route.addNode( "H2", {
 } );
 route.addNode( "I", {
   J: 7,
-  H: 5
+  H2: 5
 } );
 route.addNode( "J", {
   K: 7,
