@@ -3,18 +3,30 @@ module.exports = {
         result = {}
         var nextBearing = getNextBearing( current, next )
         if ( nextBearing > 0 && nextBearing < 180 ) {
-            var resultant = bearing - nextBearing
+            var resultant1 = bearing - nextBearing
+            var resultant2 = ( 360 - bearing ) + nextBearing
+
+            if ( resultant1 < resultant2 ) {
+                resultant = resultant1
+            } else {
+                resultant = resultant2
+            }
+            console.log( "resultant1 is ", resultant1 )
+            console.log( "resultant2 is ", resultant2 )
             resultant = Math.abs( resultant )
         } else {
             var resultant = parseInt( bearing, 10 ) + 360 - nextBearing
             resultant = Math.abs( resultant % 360 )
         }
 
+        if ( resultant1 < resultant2 ) {
+            var direction = determineDirection( resultant2 )
+            console.log( "Running here 1" )
+        } else {
+            var direction = determineDirection( resultant1 )
+            console.log( "Running here 2" )
+        }
 
-        var resultant2 = parseInt( bearing, 10 ) + nextBearing
-        resultant2 = resultant2 % 360
-
-        var direction = determineDirection( resultant2 )
         console.log( "direction: " + direction )
         console.log( "resultant: " + resultant )
         console.log( "resultant2: " + resultant2 )
@@ -27,7 +39,6 @@ module.exports = {
             direction: direction,
             bearingDestination: resultant
         }
-
         return result
     }
 }
